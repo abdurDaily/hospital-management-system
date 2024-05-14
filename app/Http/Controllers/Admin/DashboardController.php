@@ -21,7 +21,31 @@ class DashboardController extends Controller
     }
 
     // ** profile Update
-    public function profileUpdate(Request $request){
+    public function profileUpdate(Request $request, $id){
+
+        if($request->hasFile('profile_img')){
+            $extension = $request->profile_img->extension();
+            $uniName = 'profileImg-' . uniqid() . '.' . $extension;
+            $imagePath = $request->profile_img->storeAs('profileImg', $uniName, 'public');
+         }
+
+        $AuthUser =  User::findOrFail($id);
+        if($request->hasFile('profile_img')){
+            $AuthUser->image = env('APP_URL') . 'storage/' . $imagePath;
+        }
+        $AuthUser->email = $request->email;
+        $AuthUser->name = $request->name;
+        $AuthUser->website = $request->web;
+        $AuthUser->contact_no = $request->phone;
+        $AuthUser->about_me = $request->about_me;
+        $AuthUser->blood = $request->blood;
+        $AuthUser->designation = $request->designation;
+        $AuthUser->save();
+
+     
+        $request->validate([
+             'email' => 'required|email|unique:users,email,'.$id,
+        ]);
 
         if(!Hash::check($request->old_password, auth()->user()->password)){
             return back()->with("error", "Old Password Doesn't match!");
@@ -31,5 +55,10 @@ class DashboardController extends Controller
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
+
+
+
+
+      
     }
 }

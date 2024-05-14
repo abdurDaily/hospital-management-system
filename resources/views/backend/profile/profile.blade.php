@@ -7,7 +7,7 @@
         <div class="row align-items-center">
           <div class="col-md-6">
             <div class="title">
-              <h2>Settings</h2>
+              <h2>Profile Setting</h2>
             </div>
           </div>
           <!-- end col -->
@@ -33,52 +33,60 @@
       <!-- ========== title-wrapper end ========== -->
 
       
-      <form action="{{ route('admin.profile.update') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ route('admin.profile.update', Auth::User()->id ) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
             <div class="row">
                 <div class="col-lg-6">
                 <div class="card-style settings-card-1 mb-30">
-                    <div class="title mb-30 d-flex justify-content-between align-items-center">
-                    <h6>My Profile</h6>
-                    <button class="border-0 bg-transparent">
-                        <i class="lni lni-pencil-alt"></i>
-                    </button>
-                    </div>
+                    
                     <div class="profile-info">
-                    <div class="d-flex align-items-center mb-30">
-                        <div class="profile-image">
-                        <img src="{{ asset('backend/assets/images/profile/profile-1.png') }}" alt="">
-                        <div class="update-image">
-                            <input type="file">
-                            <label for=""><i class="lni lni-cloud-upload"></i></label>
-                        </div>
-                        </div>
-                        <div class="profile-meta">
-                        <h5 class="text-bold text-dark mb-10">{{ Auth::user()->name }}</h5>
-                        <p class="text-sm text-gray">Web &amp; UI/UX Design</p>
-                        </div>
+
+
+                    <div class="input-style-1">
+                        <label for="profile_img">
+                            <span>Choose an Image</span> <br> <br>
+                            <img class="display_img" style="width: 200px; height:200px; cursor: pointer;" src="{{ Auth::user()->image ?  Auth::user()->image : 'https://api.dicebear.com/8.x/initials/svg?seed=' . Auth::user()->name   }}" alt="profile-img" name="profile_img">
+                        </label>
+                        <input id="profile_img" class="d-none profile_img" name="profile_img" type="file" accept=".png,.jpg,.jpeg">
                     </div>
+
+
                     <div class="input-style-1">
                         <label>Email</label>
-                        <input type="email" placeholder="admin@example.com" value="admin@example.com">
+                        <input type="email" name="email"  placeholder="admin@example.com" value="{{ Auth::user()->email }}">
+                        @error('email')
+                          <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
+
                     <div class="input-style-1">
                         <label>Password</label>
-                        <input type="text" value="" name="old_password" placeholder="old password">
+                        <input type="password" value="" name="old_password" placeholder="old password">
+                        @error('old_password')
+                          <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="input-style-1">
                         <label>Confirm Password</label>
-                        <input type="text" name="new_password" value="" placeholder="new password">
+                        <input type="password" name="new_password" value="" placeholder="new password">
+                        @error('new_password')
+                          <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
                     <div class="input-style-1">
-                        <label>Website</label>
-                        <input type="text" placeholder="www.uideck.com" value="www.uideck.com">
+                        <label>Designation</label>
+                        <input value="{{ Auth::user()->designation }}" type="text" name="designation" value="" placeholder="Designation">
                     </div>
+
+
                     <div class="input-style-1">
-                        <label>Bio</label>
-                        <textarea placeholder="Write your bio here" rows="4">  Crafted for – Business, Startup, SaaS, Apps, Event, Software, Agency, Resume and Portfolio. All Landing Pages comes with clean design and responsive layout. Also packed with all essential sections, elements, and features you need to launch</textarea>
+                        <label>Blood Group</label>
+                        <input type="text" name="blood" value="{{ Auth::user()->blood }}" placeholder="Blood Group">
                     </div>
+
                     </div>
                 </div>
                 <!-- end card -->
@@ -87,39 +95,40 @@
 
                 <div class="col-lg-6">
                 <div class="card-style settings-card-2 mb-30">
-                    <div class="title mb-30">
-                    <h6>My Profile</h6>
-                    </div>
+
 
                     <div class="row">
                         <div class="col-12">
                         <div class="input-style-1">
                             <label>Full Name</label>
-                            <input type="text" placeholder="Full Name">
-                        </div>
-                        </div>
-                        <div class="col-12">
-                        <div class="input-style-1">
-                            <label>Email</label>
-                            <input type="email" placeholder="Email">
+                            <input type="text" name="name" value="{{ Auth::user()->name }}" placeholder="Full Name">
                         </div>
                         </div>
 
+                        
                         <div class="col-12">
                         <div class="input-style-1">
-                            <label>Address</label>
-                            <input type="text" placeholder="Address">
+                            <label>Website Link</label>
+                            <input value="{{ Auth::user()->website }}" name="web" type="text" placeholder="Website">
+                        </div>
+                        </div>
+ 
+
+                        <div class="col-12">
+                        <div class="input-style-1">
+                            <label>Contact Number</label>
+                            <input type="number" value="{{ Auth::user()->contact_no }}" name="phone" placeholder="Contact no">
                         </div>
                         </div>
                         
                         <div class="col-12">
                         <div class="input-style-1">
                             <label>About Me</label>
-                            <textarea placeholder="Type here" rows="6"></textarea>
+                            <textarea name="about_me" placeholder="Type here" rows="6">{{ Auth::user()->about_me }}</textarea>
                         </div>
                         </div>
                         <div class="col-12">
-                        <button class="main-btn primary-btn btn-hover">
+                        <button type="submit" class="main-btn primary-btn btn-hover">
                             Update Profile
                         </button>
                         </div>
@@ -136,3 +145,17 @@
     <!-- end container -->
 </section>
 @endsection
+
+
+@push('backend_custom_js')
+  <script>
+      let inputImage = document.querySelector('.profile_img');
+      let displayImage = document.querySelector('.display_img');
+
+      inputImage.addEventListener('change',(e)=>{
+
+        let url = URL.createObjectURL(e.target.files[0]);
+        displayImage.src= url;
+      })
+  </script>
+@endpush

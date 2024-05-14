@@ -16,9 +16,9 @@
   </head>
   <body>
     <!-- ======== Preloader =========== -->
-    <div id="preloader">
+    {{-- <div id="preloader">
       <div class="spinner"></div>
-    </div>
+    </div> --}}
     <!-- ======== Preloader =========== -->
 
     <!-- ======== sidebar-nav start =========== -->
@@ -306,7 +306,7 @@
                     <li>
                       <a href="#0">
                         <div class="image">
-                          <img src="assets/images/lead/lead-6.png" alt="" />
+                          <img src="{{ asset('backend/assets/images/lead/lead-6.png') }}" alt="" />
                         </div>
                         <div class="content">
                           <h6>
@@ -407,11 +407,11 @@
                     <div class="profile-info">
                       <div class="info">
                         <div class="image">
-                          <img src="https://api.dicebear.com/8.x/initials/svg?seed={{ Auth::user()->name }}" alt="" />
+                          <img src="{{ Auth::user()->image ? Auth::user()->image : 'https://api.dicebear.com/8.x/initials/svg?seed=' . Auth::user()->name }}" alt="" />
                         </div>
                         <div>
                           <h6 class="fw-500">{{ Auth::user()->name }}</h6>
-                          <p>Admin</p>
+                          <p>{{ Auth::user()->designation ? Auth::user()->designation : '' }}</p>
                         </div>
                       </div>
                     </div>
@@ -420,7 +420,7 @@
                     <li>
                       <div class="author-info flex items-center !p-1">
                         <div class="image">
-                          <img src="assets/images/profile/profile-image.png" alt="image">
+                          <img src="{{ asset('backend/assets/images/profile/profile-image.png') }}" alt="image">
                         </div>
                         <div class="content">
                           <h4 class="text-sm">{{ Auth::user()->name }}</h4>
@@ -508,5 +508,6 @@
     <script src="{{ asset('backend/assets/js/world-merc.js') }} "></script>
     <script src="{{ asset('backend/assets/js/polyfill.js') }} "></script>
     <script src="{{ asset('backend/assets/js/main.js') }} "></script>
+    @stack('backend_custom_js')
   </body>
 </html>
