@@ -407,10 +407,10 @@
                     <div class="profile-info">
                       <div class="info">
                         <div class="image">
-                          <img src="assets/images/profile/profile-image.png" alt="" />
+                          <img src="https://api.dicebear.com/8.x/initials/svg?seed={{ Auth::user()->name }}" alt="" />
                         </div>
                         <div>
-                          <h6 class="fw-500">Adam Joe</h6>
+                          <h6 class="fw-500">{{ Auth::user()->name }}</h6>
                           <p>Admin</p>
                         </div>
                       </div>
@@ -423,32 +423,21 @@
                           <img src="assets/images/profile/profile-image.png" alt="image">
                         </div>
                         <div class="content">
-                          <h4 class="text-sm">Adam Joe</h4>
+                          <h4 class="text-sm">{{ Auth::user()->name }}</h4>
                           <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs"
-                            href="#">Email@gmail.com</a>
+                            href="#">{{ Auth::user()->email }}</a>
                         </div>
                       </div>
                     </li>
                     <li class="divider"></li>
                     <li>
-                      <a href="#0">
+                      <a href="{{ route('admin.profile') }}">
                         <i class="lni lni-user"></i> View Profile
                       </a>
                     </li>
+                    
                     <li>
-                      <a href="#0">
-                        <i class="lni lni-alarm"></i> Notifications
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                    </li>
-                    <li>
-                      <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                      <a href="{{ Auth::logout() }}"> <i class="lni lni-exit"></i> Sign Out </a>
+                      <a href=""> <i class="lni lni-exit"></i> Sign Out </a>
                     </li>
                   </ul>
                 </div>
@@ -466,27 +455,10 @@
           <!-- ========== title-wrapper start ========== -->
           <div class="title-wrapper pt-30">
             <div class="row align-items-center">
-              <div class="col-md-6">
-                <div class="title">
-                  <h2>Title</h2>
-                </div>
-              </div>
-              <!-- end col -->
-              <div class="col-md-6">
-                <div class="breadcrumb-wrapper">
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item">
-                        <a href="#0">Dashboard</a>
-                      </li>
-                      <li class="breadcrumb-item active" aria-current="page">
-                        Page
-                      </li>
-                    </ol>
-                  </nav>
-                </div>
-              </div>
-              <!-- end col -->
+              
+
+              @yield('backend-contains')
+
             </div>
             <!-- end row -->
           </div>
