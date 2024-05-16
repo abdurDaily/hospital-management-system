@@ -310,29 +310,9 @@
                         </div>
                         <div class="content">
                           <h6>
-                            John Doe
+                            John Doe...
                             <span class="text-regular">
                               comment on a product.
-                            </span>
-                          </h6>
-                          <p>
-                            Lorem ipsum dolor sit amet, consect etur adipiscing
-                            elit Vivamus tortor.
-                          </p>
-                          <span>10 mins ago</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#0">
-                        <div class="image">
-                          <img src="assets/images/lead/lead-1.png" alt="" />
-                        </div>
-                        <div class="content">
-                          <h6>
-                            Jonathon
-                            <span class="text-regular">
-                              like on a product.
                             </span>
                           </h6>
                           <p>

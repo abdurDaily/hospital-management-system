@@ -23,6 +23,7 @@ class DashboardController extends Controller
     // ** profile Update
     public function profileUpdate(Request $request, $id){
 
+        
         if($request->hasFile('profile_img')){
             $extension = $request->profile_img->extension();
             $uniName = 'profileImg-' . uniqid() . '.' . $extension;
@@ -43,9 +44,6 @@ class DashboardController extends Controller
         $AuthUser->save();
 
      
-        $request->validate([
-             'email' => 'required|email|unique:users,email,'.$id,
-        ]);
 
         if(!Hash::check($request->old_password, auth()->user()->password)){
             return back()->with("error", "Old Password Doesn't match!");
