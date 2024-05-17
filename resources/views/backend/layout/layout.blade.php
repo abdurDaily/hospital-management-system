@@ -437,7 +437,7 @@
                     </li>
                     
                     <li>
-                      <a href=""> <i class="lni lni-exit"></i> Sign Out </a>
+                      <a href="{{ route('admin.profile.logout') }}"> <i class="lni lni-exit"></i> Sign Out </a>
                     </li>
                   </ul>
                 </div>

@@ -7,5 +7,6 @@ use Illuminate\Support\Facades\Route;
     Route::get('dashboard',[DashboardController::class, 'index'])->name('index');
     Route::get('profile',[DashboardController::class, 'profile'])->name('profile');
     Route::put('profile-update/{id}',[DashboardController::class, 'profileUpdate'])->name('profile.update');
+    Route::get('logout',[DashboardController::class, 'logout'])->name('profile.logout');
  });
 ?>

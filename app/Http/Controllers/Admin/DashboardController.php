@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
@@ -51,14 +52,21 @@ class DashboardController extends Controller
             return back()->with("error", "Old Password Doesn't match!");
         }
 
-        #Update the new Password
+
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
+            return back();
 
 
 
 
       
+    }
+
+    // ** LOGOUT 
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
