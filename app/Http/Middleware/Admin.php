@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,9 +18,19 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::check()){
-            return $next($request);
-        }else{
+            // dd(Auth::user()->status);
+            if(Auth::user()->status == 1){
+
+                return $next($request);
+            }
+            else{
+                Auth::logout();
+                return redirect()->route('login');
+            }
+        }
+        else{
             return redirect()->route('login');
         }
     }
-}
+    }
+

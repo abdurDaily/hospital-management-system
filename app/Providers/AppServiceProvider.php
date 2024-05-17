@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer('backend.layout.layout', function ($view) {
+            $users = User::all();
+            // dd($users);
+            $view->with([
+                'user' => $users,
+            ]);    
+        });
+        
     }
 }

@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/materialdesignicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/fullcalendar.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/main.css') }}" />
+    
+
   </head>
   <body>
+    @include('sweetalert::alert')
     <!-- ======== Preloader =========== -->
     {{-- <div id="preloader">
       <div class="spinner"></div>
@@ -303,46 +306,29 @@
                     <span></span>
                   </button>
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notification">
+                    @foreach ($user as $data)
                     <li>
                       <a href="#0">
                         <div class="image">
                           <img src="{{ asset('backend/assets/images/lead/lead-6.png') }}" alt="" />
                         </div>
                         <div class="content">
-                          <h6>
-                            John Doe
-                            <span class="text-regular">
-                              comment on a product.
-                            </span>
-                          </h6>
-                          <p>
-                            Lorem ipsum dolor sit amet, consect etur adipiscing
-                            elit Vivamus tortor.
-                          </p>
-                          <span>10 mins ago</span>
+                            <h6>
+                              John Doe...
+                              <span class="text-regular">
+                                comment on a product.
+                              </span>
+                            </h6>
+                            <p>
+                              Lorem ipsum dolor sit amet, consect etur adipiscing
+                              elit Vivamus tortor.
+                            </p>
+                            <span>10 mins ago</span>
                         </div>
                       </a>
-                    </li>
-                    <li>
-                      <a href="#0">
-                        <div class="image">
-                          <img src="assets/images/lead/lead-1.png" alt="" />
-                        </div>
-                        <div class="content">
-                          <h6>
-                            Jonathon
-                            <span class="text-regular">
-                              like on a product.
-                            </span>
-                          </h6>
-                          <p>
-                            Lorem ipsum dolor sit amet, consect etur adipiscing
-                            elit Vivamus tortor.
-                          </p>
-                          <span>10 mins ago</span>
-                        </div>
-                      </a>
-                    </li>
+                    </li> 
+                    @endforeach
+                   
                   </ul>
                 </div>
                 <!-- notification end -->
