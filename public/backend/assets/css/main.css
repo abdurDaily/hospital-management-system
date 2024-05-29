@@ -2759,16 +2759,17 @@ h6,
 }
 .header .header-right button span {
   position: absolute;
-  width: 12px;
-  height: 12px;
-  background: #FF737E;
+  width: 25px;
+  height: 25px;
+  background: #365cf5;
+  color: #fff;
   border: 2px solid #fff;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  right: 0;
+  top: -10px;
+  right: -6px;
 }
 .header .header-right .dropdown-menu {
   width: 350px;

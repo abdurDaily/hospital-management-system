@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,10 +22,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->composer('backend.layout.layout', function ($view) {
-            $users = User::all();
-            // dd($users);
+            $users = User::latest()->where('status',0)->
+            get()->take(3);
+            
+            $pandingUsers = $users->where('status', 0)->count();
             $view->with([
                 'user' => $users,
+                'pandingUsers' => $pandingUsers,
             ]);    
         });
         
