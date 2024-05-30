@@ -39,7 +39,7 @@
                 
                   <td class="min-width" style="border: 1px solid #08010135">
                       <div class="lead-text" >
-                        <p class="text-center">{{ ++$key }}</p>
+                        <p class="text-center">{{ $allUsers->firstItem() + $key }}</p>
                       </div>
                   </td>
                   <td class="min-width" style="border: 1px solid #08010135">
@@ -74,6 +74,8 @@
                 <!-- end table row -->
               </tbody>
             </table>
+
+            {{ $allUsers->links() }}
             <!-- end table -->
           </div>
         </div>

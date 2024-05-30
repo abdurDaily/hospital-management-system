@@ -94,7 +94,7 @@
                   </div>
 
                   <div class="reg text-center mt-5">
-                    <span>didn't sign up ? &nbsp;<a href="{{ route('register') }}">Register Now</a></span>
+                    <span> <a style="color:#000;" href="{{ route('password.request') }}">forget password?</a> &nbsp;| &nbsp; <a href="{{ route('register') }}">Register Now</a></span>
                   </div>
                 </div>
                 <!-- end row -->

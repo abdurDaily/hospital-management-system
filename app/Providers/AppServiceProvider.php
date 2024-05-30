@@ -22,13 +22,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->composer('backend.layout.layout', function ($view) {
-            $users = User::latest()->where('status',0)->
-            get()->take(3);
-            
-            $pandingUsers = $users->where('status', 0)->count();
+            $users = User::latest()->where('status',0)->get()->take(3);
+            $notifications = User::latest()->where('status',0)->count();
+
             $view->with([
                 'user' => $users,
-                'pandingUsers' => $pandingUsers,
+                'notifications' => $notifications,
             ]);    
         });
         

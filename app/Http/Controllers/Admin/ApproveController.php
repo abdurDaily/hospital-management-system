@@ -11,7 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ApproveController extends Controller
 {
     public function getApprove(){
-        $allUsers = User::select('id','name','email','created_at')->where('status',0)->latest()->get();
+        $allUsers = User::select('id','name','email','created_at')->where('status',0)->simplePaginate(5);
         return view('backend.approve.approvePeoples',compact('allUsers'));
     }
 
