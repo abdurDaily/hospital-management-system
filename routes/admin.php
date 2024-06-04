@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\EntryController;
 use App\Http\Controllers\Admin\ApproveController;
 use App\Http\Controllers\Admin\DashboardController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DoctorEntryController;
 
  Route::prefix('/admin/')->middleware('admin')->name('admin.')->group( function(){
     Route::get('dashboard',[DashboardController::class, 'index'])->name('index');
@@ -20,7 +22,13 @@ use Illuminate\Support\Facades\Route;
     Route::get('declie/{id}',[ApproveController::class, 'declinedUser'])->name('declined.user');
     
     
-    
 
+    //** ENTRY PATIENT */
+    Route::get('patient-entry', [EntryController::class, 'entryPatient'])->name('entry.patient');
+    Route::post('patient-entry', [EntryController::class, 'storePatientData'])->name('store.patient');
+    
+    
+    //**DOCTOR ENTRY */
+    Route::get('doctor-entry', [DoctorEntryController::class, 'doctorEntry'])->name('entry.doctor');
  });
 ?>

@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
             $users = User::latest()->where('status',0)->get()->take(3);
             $notifications = User::latest()->where('status',0)->count();
 
+            // dd($users->count());
             $view->with([
                 'user' => $users,
                 'notifications' => $notifications,
