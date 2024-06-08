@@ -137,9 +137,7 @@
                   <button id="menu-toggle" class="main-btn primary-btn btn-hover">
                     <i class="lni lni-chevron-left me-2"></i> Menu
                   </button>
-                  <a src="#" id="menu-toggle" class="main-btn mx-3 primary-btn btn-hover">
-                    view website
-                  </a>
+                  <a class="main-btn primary-btn btn-hover ml-5" href="{{ route('home') }}">view website</a>
                 </div>
                 <div class="header-search d-none d-md-flex">
                   @stack('search')
