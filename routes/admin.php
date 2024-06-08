@@ -30,5 +30,7 @@ use App\Http\Controllers\Admin\DoctorEntryController;
     
     //**DOCTOR ENTRY */
     Route::get('doctor-entry', [DoctorEntryController::class, 'doctorEntry'])->name('entry.doctor');
+    Route::post('doctor-entry', [DoctorEntryController::class, 'storeUpdateData'])->name('sote.doctor.data');
+    Route::get('doctor-list', [DoctorEntryController::class, 'doctorList'])->name('list.doctor');
  });
 ?>

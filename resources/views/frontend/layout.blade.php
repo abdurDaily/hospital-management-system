@@ -116,7 +116,7 @@
                                 </div>
                             </div>    
                              <div class="col-xl-2 col-lg-2 d-none d-lg-block">
-                                 <a href="contact.html" class="top-btn">Get A Quote <i class="fas fa-chevron-right"></i></a>
+                                 <a href="{{ route('login') }}" class="top-btn text-center">Login</a>
                                  
                             </div>
                              <div class="col-12">

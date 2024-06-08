@@ -115,6 +115,9 @@
               <li>
                 <a href="{{ route('admin.entry.doctor') }}"> Tack Entry </a>
               </li>
+              <li>
+                <a href="{{ route('admin.list.doctor') }}"> List of doctor's </a>
+              </li>
             </ul>
           </li>
           {{-- DOCTOR ENTRY END --}}
